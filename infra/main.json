@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.8.9.13224",
+      "templateHash": "10189391501297588113"
+    }
+  },
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "env": {
+      "type": "string",
+      "defaultValue": "dev"
+    },
+    "loc": {
+      "type": "string",
+      "defaultValue": "krc"
+    }
+  },
+  "variables": {
+    "rg": "[format('rg-{0}-{1}-{2}', parameters('name'), parameters('env'), parameters('loc'))]",
+    "appsvcname": "[format('appsvc-{0}-{1}-{2}', parameters('name'), parameters('env'), parameters('loc'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-03-01",
+      "name": "[variables('appsvcname')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "httpsOnly": true
+      }
+    }
+  ],
+  "outputs": {
+    "rn": {
+      "type": "string",
+      "value": "[variables('rg')]"
+    }
+  }
+}
