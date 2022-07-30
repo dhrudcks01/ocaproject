@@ -8,7 +8,7 @@ param publisherName string = 'gyeongchan'
 var rg = 'rg-${name}-${loc}'
 var fncappname = 'fncapp-${name}-${loc}'
 
-resource st 'Microsoft.Storage/storageAccounts@2022-03-01' = {
+resource st 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: 'st${name}${loc}'
   location: location
   sku: {
